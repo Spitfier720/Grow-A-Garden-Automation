@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+# from datetime import datetime # For debugging purposes
 from PIL import ImageGrab
 
 import Constants.constantsScreenshot as constants
@@ -13,6 +14,8 @@ def locateTemplateOnScreen(region, targetImage):
 
     screenshot = ImageGrab.grab(bbox=region)
     screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY) # Convert to grayscale for better matching
+    # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    # cv2.imwrite(f"debugScreenshot{timestamp}.png", screenshotGray)  # Save the screenshot for debugging purposes
 
     bestMatch = None
     bestMatchValue = -1

@@ -1,9 +1,15 @@
+# For debugging purposes, you can uncomment the following import statements:
+import numpy as np
+from datetime import datetime
+from PIL import ImageGrab
+
 import autoit
 import cv2
 from time import sleep # To make sure each action is registered properly
 
 import Constants.constantsPositions as constants
 import Constants.constantsFilepaths as filepaths
+from buy import buy
 from locateTemplateOnScreen import locateTemplateOnScreen
 
 def buyGearShop():
@@ -14,46 +20,61 @@ def buyGearShop():
     - All Sprinklers(Basic, Advanced, Godly, Master)
     - Lightning Rods
 
-    This can be modifed in the Constants/constantsPositions.py file.
+    This can be modifed in the Constants/constantsFilepaths.py file.
     '''
 
     gearToBuy = list(filepaths.gearShopItemTemplatePaths)
 
-    autoit.mouse_move(constants.middleX, constants.middleY)
-    autoit.mouse_click("left")  # Click to focus the game window
-    autoit.mouse_wheel("up", 100)  # Scroll up to the top of the shop
+    # If you plan to be in the gear shop for a long time, you can uncomment the line below to not use the recall wrench
+    if(moveToGearShop()):  # Ensure player is in the gear shop before buying items
+        buy(gearToBuy)  # Buy the items from the gear shop
+        closeGearShop()  # Close the gear shop after buying items
+    
+    else:
+        print("Failed to open the gear shop. Please check your settings and try again.")
 
-    while(len(gearToBuy) > 0):
-        updatedGearToBuy = list(gearToBuy) # To prevent modifying the list while iterating over it
-        foundGear = False #  Flag to determine if we need to scroll down to find more items
+def moveToGearShop():
+    '''
+    Moves the player to the gear shop by holding the recall wrench.
+    This function is used to teleport the player to the gear shop.
+    '''
 
-        for imagePath in gearToBuy:
-            targetImage = cv2.imread(imagePath, cv2.IMREAD_GRAYSCALE) # Read the image in grayscale for better matching
-            
-            # Defines the region of the shop window
-            region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
-            coords = locateTemplateOnScreen(region, targetImage)
+    autoit.send(constants.recallWrenchKeybind)  # Player holds the recall wrench in their hand
+    autoit.mouse_click("left")  # Player uses the recall wrench to teleport to the gear shop
+    sleep(0.1)  # Wait for the teleport animation to finish
+    # Scroll to a far enough level so that the dialogue option appears
+    autoit.mouse_wheel("up", 20)
+    sleep(0.1)  # Wait for the scroll animation to finish
+    autoit.mouse_wheel("down", 10)
+    sleep(0.1) # Wait for scroll animation to finish
+    autoit.send("e") # Player interacts with the gear shop to open it
+    sleep(2) # Wait for gear shop vendor to give the options
 
-            if coords is not None: # Found item in the shop
-                updatedGearToBuy.remove(imagePath)  # Remove the item from the list after buying it so we don't look for it again
-                foundGear = True
+    
+    region = (constants.gearShopOptionsPosX1, constants.gearShopOptionsY1, constants.gearShopOptionsPosX2, constants.gearShopOptionsY2)
+    for showGearShopImage in filepaths.showGearShopImagePaths:
+        targetImage = cv2.imread(showGearShopImage, cv2.IMREAD_GRAYSCALE)  # Read the image in grayscale for better matching
+        showGearShopCoords = locateTemplateOnScreen(region, targetImage)
 
-                autoit.mouse_move(coords[0], coords[1])
-                autoit.mouse_click("left")
-                sleep(0.5) # Wait for the animation to finish
+        if showGearShopCoords is not None:
+            autoit.mouse_move(showGearShopCoords[0], showGearShopCoords[1])
+            autoit.mouse_click("left")
+            autoit.mouse_move(constants.middleX, constants.middleY)  # Move mouse to the center of the screen to focus on the shop window
+            sleep(2)  # Wait for the gear shop to open
+            return True
+    
+    # If the gear shop options were not found, take a screenshot for debugging purposes
+    screenshot = ImageGrab.grab(bbox=region)
+    screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    cv2.imwrite(f"debugScreenshot{timestamp}.png", screenshotGray)
+    return False  # If the gear shop options were not found, return False
 
-                moneySymbolImage = cv2.imread(filepaths.moneySymbolImagePath, cv2.IMREAD_GRAYSCALE)
-                moneySymbolCoords = locateTemplateOnScreen(region, moneySymbolImage)
+def closeGearShop():
+    '''
+    Closes the gear shop by clicking the X button.
+    This function is used to close the gear shop after buying items.
+    '''
 
-                if moneySymbolCoords is not None: # Found the money symbol indicating that we can buy the item
-                    autoit.mouse_move(moneySymbolCoords[0], moneySymbolCoords[1])
-                    # TODO: Modify this so it's not hardcoded to click 25 times
-                    # Some of those clicks won't register because we click so fast
-                    for _ in range(25):
-                        autoit.mouse_click("left")
-            
-        if(not foundGear):
-            autoit.mouse_wheel("down", 1)  # Scroll down by one click to look at the next item in the shop
-            sleep(0.5)  # Wait for the scroll animation to finish
-        
-        gearToBuy = list(updatedGearToBuy)
+    autoit.mouse_move(constants.XButtonPosX, constants.XButtonPosY)
+    autoit.mouse_click("left")  # Click the X button to close the gear shop

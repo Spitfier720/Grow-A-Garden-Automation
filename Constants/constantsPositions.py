@@ -42,3 +42,17 @@ shopWindowY2 = 885 / screenHeight
 # Convert to relative positions
 shopWindowPosX1, shopWindowY1 = int(screenWidth * shopWindowX1), int(screenHeight * shopWindowY1)
 shopWindowPosX2, shopWindowY2 = int(screenWidth * shopWindowX2), int(screenHeight * shopWindowY2)
+
+# The keybind to hold the recall wrench, which teleports the player to the gear shop
+recallWrenchKeybind = "3"  # Change this to the keybind you use for the recall wrench
+
+# Dimensions of the gear shop options menu, which will be used to detect the option that opens the gear shop
+# Top left corner of the gear shop options menu
+gearShopOptionsX1 = 960 / screenWidth
+gearShopOptionsY1 = 515 / screenHeight
+# Bottom right corner of the gear shop options menu
+gearShopOptionsX2 = 1700 / screenWidth
+gearShopOptionsY2 = 700 / screenHeight
+# Convert to relative positions
+gearShopOptionsPosX1, gearShopOptionsY1 = int(screenWidth * gearShopOptionsX1), int(screenHeight * gearShopOptionsY1)
+gearShopOptionsPosX2, gearShopOptionsY2 = int(screenWidth * gearShopOptionsX2), int(screenHeight * gearShopOptionsY2)
