@@ -1,8 +1,10 @@
 import autoit
+import importlib
 from datetime import datetime
 from time import sleep
 
 import Constants.constantsPositions as constants
+import Constants.constantsFilepaths as filepaths
 from buyGearShop import buyGearShop
 from buySeedShop import buySeedShop
 
@@ -31,6 +33,7 @@ def main():
         # Uncomment the if true statement to instantly buy shop items for testing purposes
         # if True:
         if(isFiveMinMark()):
+            importlib.reload(filepaths) # Allows you to change the constantsFilepaths file without restarting the script
             focusGameWindow()
             print("Buying gear shop items...")
             buyGearShop()

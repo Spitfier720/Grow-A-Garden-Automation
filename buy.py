@@ -46,6 +46,6 @@ def buy(thingsToBuy):
             
         if(not found):
             autoit.mouse_wheel("down", 1)  # Scroll down by one click to look at the next item in the shop
-            sleep(0.5)  # Wait for the scroll animation to finish
+            sleep(0.2)  # Wait for the scroll animation to finish
         
         toBuy = list(updatedToBuy)

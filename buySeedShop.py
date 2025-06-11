@@ -1,3 +1,8 @@
+# For debugging purposes, you can uncomment the following import statements:
+import numpy as np
+from datetime import datetime
+from PIL import ImageGrab
+
 import autoit
 import cv2
 from time import sleep
@@ -51,5 +56,18 @@ def closeSeedShop():
     This function is used to close the seed shop after buying items.
     '''
 
-    autoit.mouse_move(constants.XButtonPosX, constants.XButtonPosY)
-    autoit.mouse_click("left")  # Click the X button to close the seed shop
+    region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
+    XImage = cv2.imread(filepaths.XButtonImagePath, cv2.IMREAD_GRAYSCALE)
+    XButtonCoords = locateTemplateOnScreen(region, XImage)
+
+    if XButtonCoords is not None:
+        autoit.mouse_move(XButtonCoords[0], XButtonCoords[1])
+        autoit.mouse_click("left")  # Click the X button to close the gear shop
+    
+    else:
+        print("Failed to close the gear shop. The X button was not found.")
+        # Take a screenshot for debugging purposes
+        screenshot = ImageGrab.grab(bbox=region)
+        screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        cv2.imwrite(f"debugScreenshot{timestamp}.png", screenshotGray)
