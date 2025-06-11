@@ -48,6 +48,11 @@ def moveToSeedShop():
     if locateTemplateOnScreen(region, XImage) is not None:
         return True
     
+    # If the seed shop options were not found, take a screenshot for debugging purposes
+    screenshot = ImageGrab.grab(bbox=region)
+    screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    cv2.imwrite(f"debugScreenshot{timestamp}.png", screenshotGray)
     return False
 
 def closeSeedShop():

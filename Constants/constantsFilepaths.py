@@ -9,7 +9,7 @@ moneySymbolImagePath = "Screenshots/Money.png"
 gearShopItemTemplatePaths = [
     # "Screenshots/Gear Items/GearWatering.png",
     # "Screenshots/Gear Items/GearTrowel.png",
-    "Screenshots/Gear Items/GearRecall.png",
+    # "Screenshots/Gear Items/GearRecall.png",
     "Screenshots/Gear Items/GearBasic.png",
     "Screenshots/Gear Items/GearAdvanced.png",
     "Screenshots/Gear Items/GearGodly.png",

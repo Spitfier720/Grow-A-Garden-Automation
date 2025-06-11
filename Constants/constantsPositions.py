@@ -30,11 +30,11 @@ numScrollsSeedsShop = 7
 
 # Dimensions of the shop window, which will be used to take a screenshot and detect items
 # Top left corner of the shop window
-shopWindowX1 = 590 / screenWidth
+shopWindowX1 = 555 / screenWidth
 shopWindowY1 = 225 / screenHeight
 # Bottom right corner of the shop window
-shopWindowX2 = 1330 / screenWidth
-shopWindowY2 = 885 / screenHeight
+shopWindowX2 = 1360 / screenWidth
+shopWindowY2 = 980 / screenHeight
 # Convert to relative positions
 shopWindowPosX1, shopWindowY1 = int(screenWidth * shopWindowX1), int(screenHeight * shopWindowY1)
 shopWindowPosX2, shopWindowY2 = int(screenWidth * shopWindowX2), int(screenHeight * shopWindowY2)
