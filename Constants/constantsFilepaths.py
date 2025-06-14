@@ -15,6 +15,7 @@ gearShopItemTemplatePaths = [
     "Screenshots/Gear Items/GearGodly.png",
     "Screenshots/Gear Items/GearLightning.png",
     "Screenshots/Gear Items/GearMaster.png"
+    # "Screenshots/Gear Items/GearCleaning.png",
     # "Screenshots/Gear Items/GearFavorite.png",
     # "Screenshots/Gear Items/GearHarvest.png",
     # "Screenshots/Gear Items/GearFriendship.png"
@@ -36,13 +37,14 @@ seedShopItemTemplatePaths = [
     # "Screenshots/Seeds/SeedCoconut.png",
     # "Screenshots/Seeds/SeedCactus.png",
     # "Screenshots/Seeds/SeedDragon.png",
-    "Screenshots/Seeds/SeedMango.png",
-    "Screenshots/Seeds/SeedGrape.png",
+    # "Screenshots/Seeds/SeedMango.png",
+    # "Screenshots/Seeds/SeedGrape.png",
     "Screenshots/Seeds/SeedMushroom.png",
-    "Screenshots/Seeds/SeedPepper.png",
+    # "Screenshots/Seeds/SeedPepper.png",
     "Screenshots/Seeds/SeedCacao.png",
     "Screenshots/Seeds/SeedBeanstalk.png",
-    "Screenshots/Seeds/SeedEmber.png"
+    "Screenshots/Seeds/SeedEmber.png",
+    "Screenshots/Seeds/SeedSugar.png",
 ]
 
 # The image path for the X button to close the shop
