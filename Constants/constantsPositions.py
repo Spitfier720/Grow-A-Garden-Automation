@@ -16,6 +16,10 @@ gardenButtonRelativeX = 960 / screenWidth
 gardenButtonRelativeY = 137 / screenHeight
 gardenButtonPosX, gardenButtonPosY = int(screenWidth * gardenButtonRelativeX), int(screenHeight * gardenButtonRelativeY)
 
+XButtonRelativeX = 1290 / 1920
+XButtonRelativeY = 265 / 1080
+XButtonPosX, XButtonPosY = int(screenWidth * XButtonRelativeX), int(screenHeight * XButtonRelativeY)
+
 # sellButtonRelativeX = 1240 / screenWidth
 # sellButtonRelativeY = 135 / screenHeight
 # sellButtonPosX, sellButtonPosY = int(screenWidth * sellButtonRelativeX), int(screenHeight * sellButtonRelativeY)

@@ -67,7 +67,7 @@ def moveToGearShop():
     screenshot = ImageGrab.grab(bbox=region)
     screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-    cv2.imwrite(f"debugScreenshot{timestamp}.png", screenshotGray)
+    cv2.imwrite(f"debugScreenshotOpenGearShop{timestamp}.png", screenshotGray)
     return False  # If the gear shop options were not found, return False
 
 def closeGearShop():
@@ -86,8 +86,10 @@ def closeGearShop():
     
     else:
         print("Failed to close the gear shop. The X button was not found.")
+        autoit.mouse_move(constants.XButtonPosX, constants.XButtonPosY)
+        autoit.mouse_click("left")
         # Take a screenshot for debugging purposes
         screenshot = ImageGrab.grab(bbox=region)
         screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-        cv2.imwrite(f"debugScreenshot{timestamp}.png", screenshotGray)
+        cv2.imwrite(f"debugScreenshotCloseGearShop{timestamp}.png", screenshotGray)

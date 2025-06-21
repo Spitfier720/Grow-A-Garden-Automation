@@ -1,5 +1,7 @@
 '''
 Feel free to modify the relative positions of the buttons based on your screen resolution, if you like.
+For shop item images, when adding or removing images, ensure that the order of the images in the lists matches the order of the items in the shop.
+This will ensure that the script runs correctly and efficiently.
 '''
 
 # Image path for the money symbol, which indicates that the player can attempt to buy the item
@@ -13,7 +15,6 @@ gearShopItemTemplatePaths = [
     "Screenshots/Gear Items/GearBasic.png",
     "Screenshots/Gear Items/GearAdvanced.png",
     "Screenshots/Gear Items/GearGodly.png",
-    "Screenshots/Gear Items/GearLightning.png",
     "Screenshots/Gear Items/GearMaster.png"
     # "Screenshots/Gear Items/GearCleaning.png",
     # "Screenshots/Gear Items/GearFavorite.png",
@@ -23,24 +24,24 @@ gearShopItemTemplatePaths = [
 
 # File paths for seed shop item template images
 seedShopItemTemplatePaths = [
-    # "Screenshots/Seeds/SeedCarrot.png",
-    # "Screenshots/Seeds/SeedStrawberry.png",
-    # "Screenshots/Seeds/SeedBlueberry.png",
-    # "Screenshots/Seeds/SeedOrange.png",
-    # "Screenshots/Seeds/SeedTomato.png",
-    # "Screenshots/Seeds/SeedCorn.png",
-    # "Screenshots/Seeds/SeedDaffodil.png",
-    # "Screenshots/Seeds/SeedWatermelon.png",
-    # "Screenshots/Seeds/SeedPumpkin.png",
-    # "Screenshots/Seeds/SeedApple.png",
-    # "Screenshots/Seeds/SeedBamboo.png",
-    # "Screenshots/Seeds/SeedCoconut.png",
-    # "Screenshots/Seeds/SeedCactus.png",
-    # "Screenshots/Seeds/SeedDragon.png",
-    # "Screenshots/Seeds/SeedMango.png",
-    # "Screenshots/Seeds/SeedGrape.png",
+    "Screenshots/Seeds/SeedCarrot.png",
+    "Screenshots/Seeds/SeedStrawberry.png",
+    "Screenshots/Seeds/SeedBlueberry.png",
+    "Screenshots/Seeds/SeedOrange.png",
+    "Screenshots/Seeds/SeedTomato.png",
+    "Screenshots/Seeds/SeedCorn.png",
+    "Screenshots/Seeds/SeedDaffodil.png",
+    "Screenshots/Seeds/SeedWatermelon.png",
+    "Screenshots/Seeds/SeedPumpkin.png",
+    "Screenshots/Seeds/SeedApple.png",
+    "Screenshots/Seeds/SeedBamboo.png",
+    "Screenshots/Seeds/SeedCoconut.png",
+    "Screenshots/Seeds/SeedCactus.png",
+    "Screenshots/Seeds/SeedDragon.png",
+    "Screenshots/Seeds/SeedMango.png",
+    "Screenshots/Seeds/SeedGrape.png",
     "Screenshots/Seeds/SeedMushroom.png",
-    # "Screenshots/Seeds/SeedPepper.png",
+    "Screenshots/Seeds/SeedPepper.png",
     "Screenshots/Seeds/SeedCacao.png",
     "Screenshots/Seeds/SeedBeanstalk.png",
     "Screenshots/Seeds/SeedEmber.png",
@@ -53,5 +54,6 @@ XButtonImagePath = "Screenshots/X.png"
 # The image path for the option to open the gear shop
 showGearShopImagePaths = [
     "Screenshots/ShowGearShop.png",
-    "Screenshots/ShowGearShop2.png"
+    "Screenshots/ShowGearShop2.png",
+    "Screenshots/ShowGearShop3.png"
 ]

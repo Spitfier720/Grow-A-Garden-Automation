@@ -13,7 +13,8 @@ def buy(thingsToBuy):
     '''
 
     toBuy = list(thingsToBuy)
-    autoit.mouse_wheel("up", 100)  # Scroll up to the top of the shop
+    autoit.mouse_wheel("up", 50)  # Scroll up to the top of the shop
+    sleep(0.1)  # Wait for the scroll animation to finish
 
     while(len(toBuy) > 0):
         updatedToBuy = list(toBuy) # To prevent modifying the list while iterating over it
@@ -32,7 +33,7 @@ def buy(thingsToBuy):
 
                 autoit.mouse_move(coords[0], coords[1])
                 autoit.mouse_click("left")
-                sleep(0.5) # Wait for the animation to finish
+                sleep(0.3) # Wait for the animation to finish
 
                 moneySymbolImage = cv2.imread(filepaths.moneySymbolImagePath, cv2.IMREAD_GRAYSCALE)
                 moneySymbolCoords = locateTemplateOnScreen(region, moneySymbolImage)
@@ -41,8 +42,11 @@ def buy(thingsToBuy):
                     autoit.mouse_move(moneySymbolCoords[0], moneySymbolCoords[1])
                     # TODO: Modify this so it's not hardcoded to click 25 times
                     # Some of those clicks won't register because we click so fast
-                    for _ in range(25):
+                    for _ in range(40):
                         autoit.mouse_click("left")
+            
+            else: # Assuming this item is not in the current shop view, we can assume that the remaining items are also not in the current view
+                break
             
         if(not found):
             autoit.mouse_wheel("down", 1)  # Scroll down by one click to look at the next item in the shop
