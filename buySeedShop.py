@@ -40,11 +40,14 @@ def moveToSeedShop():
     autoit.mouse_move(constants.middleX, constants.middleY)  # Move mouse to the center of the screen to focus on the shop window
     sleep(1.5) # Wait for seed shop vendor to open seed shop
 
-    region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
-    XImage = cv2.imread(filepaths.XButtonImagePath, cv2.IMREAD_GRAYSCALE)
+    # Check if any rarity image is present in the seed shop window, meaning that the seed shop is opened
+    for seedShopOpenedImage in filepaths.seedShopOpenedImagePaths:
+        region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
+        seedImage = cv2.imread(seedShopOpenedImage, cv2.IMREAD_GRAYSCALE)
 
-    if locateTemplateOnScreen(region, XImage) is not None:
-        return True
+        if locateTemplateOnScreen(region, seedImage) is not None:
+            print("Found " + seedShopOpenedImage + " in the seed shop window. Seed shop is opened.")
+            return True
     
     # If the seed shop options were not found, take a screenshot for debugging purposes
     screenshot = ImageGrab.grab(bbox=region)
