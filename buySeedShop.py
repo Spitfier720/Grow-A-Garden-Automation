@@ -14,9 +14,7 @@ from locateTemplateOnScreen import locateTemplateOnScreen
 
 def buySeedShop():
     '''
-    Automatically buys most items from the gear shop in the game.
-    By default, it will buy all seeds from Divine rarity and up, as well as Mango and Grape seeds.
-
+    Automatically buys the desired items from the gear shop in the game.
     This can be modifed in the Constants/constantsFilepaths.py file.
     '''
 

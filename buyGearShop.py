@@ -14,12 +14,7 @@ from locateTemplateOnScreen import locateTemplateOnScreen
 
 def buyGearShop():
     '''
-    Automatically buys most items from the gear shop in the game.
-    By default, it will buy the following items:
-    - Recall Wrenches
-    - All Sprinklers(Basic, Advanced, Godly, Master)
-    - Lightning Rods
-
+    Automatically buys the desired items from the gear shop in the game.
     This can be modifed in the Constants/constantsFilepaths.py file.
     '''
 
