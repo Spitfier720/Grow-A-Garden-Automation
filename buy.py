@@ -33,7 +33,7 @@ def buy(thingsToBuy):
 
                 autoit.mouse_move(coords[0], coords[1])
                 autoit.mouse_click("left")
-                sleep(0.3) # Wait for the animation to finish
+                sleep(0.4) # Wait for the animation to finish
 
                 moneySymbolImage = cv2.imread(filepaths.moneySymbolImagePath, cv2.IMREAD_GRAYSCALE)
                 moneySymbolCoords = locateTemplateOnScreen(region, moneySymbolImage)

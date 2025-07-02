@@ -36,14 +36,14 @@ def moveToGearShop():
 
     autoit.send(constants.recallWrenchKeybind)  # Player holds the recall wrench in their hand
     autoit.mouse_click("left")  # Player uses the recall wrench to teleport to the gear shop
-    sleep(0.1)  # Wait for the teleport animation to finish
+    sleep(0.3)  # Wait for the teleport animation to finish
     # Scroll to a far enough level so that the dialogue option appears
     autoit.mouse_wheel("up", 20)
-    sleep(0.1)  # Wait for the scroll animation to finish
+    sleep(0.3)  # Wait for the scroll animation to finish
     autoit.mouse_wheel("down", 10)
-    sleep(0.1) # Wait for scroll animation to finish
+    sleep(0.3) # Wait for scroll animation to finish
     autoit.send("e") # Player interacts with the gear shop to open it
-    sleep(2) # Wait for gear shop vendor to give the options
+    sleep(3) # Wait for gear shop vendor to give the options
 
     
     region = (constants.gearShopOptionsPosX1, constants.gearShopOptionsY1, constants.gearShopOptionsPosX2, constants.gearShopOptionsY2)

@@ -15,6 +15,7 @@ gearShopItemTemplatePaths = [
     "Screenshots/Gear Items/GearBasic.png",
     "Screenshots/Gear Items/GearAdvanced.png",
     "Screenshots/Gear Items/GearGodly.png",
+    "Screenshots/Gear Items/GearMagnifying.png",
     "Screenshots/Gear Items/GearTanning.png",
     "Screenshots/Gear Items/GearMaster.png"
     # "Screenshots/Gear Items/GearCleaning.png",
@@ -31,6 +32,7 @@ seedShopItemTemplatePaths = [
     "Screenshots/Seeds/SeedTomato.png",
     "Screenshots/Seeds/SeedCauliflower.png",
     "Screenshots/Seeds/SeedWatermelon.png",
+    "Screenshots/Seeds/SeedRafflesia.png",
     "Screenshots/Seeds/SeedGreen.png",
     "Screenshots/Seeds/SeedAvocado.png",
     "Screenshots/Seeds/SeedBanana.png",
@@ -40,6 +42,7 @@ seedShopItemTemplatePaths = [
     "Screenshots/Seeds/SeedPrickly.png",
     "Screenshots/Seeds/SeedLoquat.png",
     "Screenshots/Seeds/SeedFeijoa.png",
+    "Screenshots/Seeds/SeedPitcher.png",
     "Screenshots/Seeds/SeedSugar.png",
 ]
 

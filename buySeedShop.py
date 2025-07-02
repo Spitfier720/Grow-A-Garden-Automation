@@ -35,7 +35,7 @@ def moveToSeedShop():
 
     autoit.mouse_move(constants.seedsButtonPosX, constants.seedsButtonPosY)
     autoit.mouse_click("left")  # Click the seeds button to open the seed shop
-    sleep(0.1)  # Wait for the teleport animation to finish
+    sleep(0.3)  # Wait for the teleport animation to finish
     autoit.send("e") # Player interacts with the gear shop to open it
     autoit.mouse_move(constants.middleX, constants.middleY)  # Move mouse to the center of the screen to focus on the shop window
     sleep(1.5) # Wait for seed shop vendor to open seed shop
