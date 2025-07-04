@@ -1,8 +1,3 @@
-# For debugging purposes, you can uncomment the following import statements:
-import numpy as np
-from datetime import datetime
-from PIL import ImageGrab
-
 import autoit
 import cv2
 from time import sleep # To make sure each action is registered properly
@@ -49,7 +44,7 @@ def moveToGearShop():
     region = (constants.gearShopOptionsPosX1, constants.gearShopOptionsY1, constants.gearShopOptionsPosX2, constants.gearShopOptionsY2)
     for showGearShopImage in filepaths.showGearShopImagePaths:
         targetImage = cv2.imread(showGearShopImage, cv2.IMREAD_GRAYSCALE)  # Read the image in grayscale for better matching
-        showGearShopCoords = locateTemplateOnScreen(region, targetImage)
+        showGearShopCoords = locateTemplateOnScreen(region, targetImage, showGearShopImage)
 
         if showGearShopCoords is not None:
             autoit.mouse_move(showGearShopCoords[0], showGearShopCoords[1])
@@ -58,11 +53,7 @@ def moveToGearShop():
             sleep(2)  # Wait for the gear shop to open
             return True
     
-    # If the gear shop options were not found, take a screenshot for debugging purposes
-    screenshot = ImageGrab.grab(bbox=region)
-    screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-    cv2.imwrite(f"debugScreenshotOpenGearShop{timestamp}.png", screenshotGray)
+    print("Failed to open the gear shop. The options were not found.")
     return False  # If the gear shop options were not found, return False
 
 def closeGearShop():
@@ -73,7 +64,7 @@ def closeGearShop():
 
     region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
     XImage = cv2.imread(filepaths.XButtonImagePath, cv2.IMREAD_GRAYSCALE)
-    XButtonCoords = locateTemplateOnScreen(region, XImage)
+    XButtonCoords = locateTemplateOnScreen(region, XImage, filepaths.XButtonImagePath)
 
     if XButtonCoords is not None:
         autoit.mouse_move(XButtonCoords[0], XButtonCoords[1])
@@ -83,8 +74,3 @@ def closeGearShop():
         print("Failed to close the gear shop. The X button was not found.")
         autoit.mouse_move(constants.XButtonPosX, constants.XButtonPosY)
         autoit.mouse_click("left")
-        # Take a screenshot for debugging purposes
-        screenshot = ImageGrab.grab(bbox=region)
-        screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-        cv2.imwrite(f"debugScreenshotCloseGearShop{timestamp}.png", screenshotGray)

@@ -1,11 +1,12 @@
 import cv2
 import numpy as np
-# from datetime import datetime # For debugging purposes
+from datetime import datetime # For debugging purposes
 from PIL import ImageGrab
 
 import Constants.constantsScreenshot as constants
+import Constants.constantsFilepaths as filepaths
 
-def locateTemplateOnScreen(region, targetImage):
+def locateTemplateOnScreen(region, targetImage, imagePath):
     '''
     Takes a partial screenshot of the current screen and checks if the target image is present.
     If the target image is found, it returns the center coordinates of the target image.
@@ -39,4 +40,9 @@ def locateTemplateOnScreen(region, targetImage):
         centerY = int(bestMatch[1] + targetImage.shape[0] * bestScale / 2)
         return (centerX + region[0], centerY + region[1])  # Adjust for the region offset
     else:
+        # Take a debug screenshot to reference later if the image was not found, not including shop items
+        if(imagePath in filepaths.showGearShopImagePaths or imagePath == filepaths.XButtonImagePath):
+            print("Failed to find " + imagePath + " in the screenshot. Saving debug screenshot.")
+            timestamp = datetime.now().strftime("%B%d_%H%M")
+            cv2.imwrite(f"debugScreenshotNoMatch-{imagePath.split("/")[-1]}-{timestamp}.png", screenshotGray)
         return None

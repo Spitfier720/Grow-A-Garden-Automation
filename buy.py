@@ -12,6 +12,7 @@ def buy(thingsToBuy):
     Automatically buys the desired items from a given shop in the game.
     '''
 
+    count = 0
     toBuy = list(thingsToBuy)
     autoit.mouse_wheel("up", 50)  # Scroll up to the top of the shop
     sleep(0.1)  # Wait for the scroll animation to finish
@@ -25,7 +26,7 @@ def buy(thingsToBuy):
             
             # Defines the region of the shop window
             region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
-            coords = locateTemplateOnScreen(region, targetImage)
+            coords = locateTemplateOnScreen(region, targetImage, imagePath)
 
             if coords is not None: # Found item in the shop
                 updatedToBuy.remove(imagePath)  # Remove the item from the list after buying it so we don't look for it again
@@ -36,7 +37,7 @@ def buy(thingsToBuy):
                 sleep(0.4) # Wait for the animation to finish
 
                 moneySymbolImage = cv2.imread(filepaths.moneySymbolImagePath, cv2.IMREAD_GRAYSCALE)
-                moneySymbolCoords = locateTemplateOnScreen(region, moneySymbolImage)
+                moneySymbolCoords = locateTemplateOnScreen(region, moneySymbolImage, filepaths.moneySymbolImagePath)
 
                 if moneySymbolCoords is not None: # Found the money symbol indicating that we can buy the item
                     autoit.mouse_move(moneySymbolCoords[0], moneySymbolCoords[1])
@@ -53,3 +54,11 @@ def buy(thingsToBuy):
             sleep(0.2)  # Wait for the scroll animation to finish
         
         toBuy = list(updatedToBuy)
+        count += 1
+
+        if(count > 30):
+            print("Something went wrong. Scrolled through the entire shop without finding all of the items. Retrying...")
+            print("Items left to buy: " + str(toBuy))
+            autoit.mouse_wheel("up", 50)  # Scroll up to the top of the shop
+            sleep(0.1)  # Wait for the scroll animation to finish
+            count = 0

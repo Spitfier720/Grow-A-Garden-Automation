@@ -15,7 +15,7 @@ gearShopItemTemplatePaths = [
     "Screenshots/Gear Items/GearBasic.png",
     "Screenshots/Gear Items/GearAdvanced.png",
     "Screenshots/Gear Items/GearGodly.png",
-    "Screenshots/Gear Items/GearMagnifying.png",
+    # "Screenshots/Gear Items/GearMagnifying.png",
     "Screenshots/Gear Items/GearTanning.png",
     "Screenshots/Gear Items/GearMaster.png"
     # "Screenshots/Gear Items/GearCleaning.png",

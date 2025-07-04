@@ -1,8 +1,3 @@
-# For debugging purposes, you can uncomment the following import statements:
-import numpy as np
-from datetime import datetime
-from PIL import ImageGrab
-
 import autoit
 import cv2
 from time import sleep
@@ -45,15 +40,11 @@ def moveToSeedShop():
         region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
         seedImage = cv2.imread(seedShopOpenedImage, cv2.IMREAD_GRAYSCALE)
 
-        if locateTemplateOnScreen(region, seedImage) is not None:
+        if locateTemplateOnScreen(region, seedImage, seedShopOpenedImage) is not None:
             print("Found " + seedShopOpenedImage + " in the seed shop window. Seed shop is opened.")
             return True
     
-    # If the seed shop options were not found, take a screenshot for debugging purposes
-    screenshot = ImageGrab.grab(bbox=region)
-    screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-    cv2.imwrite(f"debugScreenshotOpenSeedShop{timestamp}.png", screenshotGray)
+    print("Failed to open the seed shop. No rarity was found.")
     return False
 
 def closeSeedShop():
@@ -64,7 +55,7 @@ def closeSeedShop():
 
     region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
     XImage = cv2.imread(filepaths.XButtonImagePath, cv2.IMREAD_GRAYSCALE)
-    XButtonCoords = locateTemplateOnScreen(region, XImage)
+    XButtonCoords = locateTemplateOnScreen(region, XImage, filepaths.XButtonImagePath)
 
     if XButtonCoords is not None:
         autoit.mouse_move(XButtonCoords[0], XButtonCoords[1])
@@ -74,8 +65,3 @@ def closeSeedShop():
         print("Failed to close the gear shop. The X button was not found.")
         autoit.mouse_move(constants.XButtonPosX, constants.XButtonPosY)
         autoit.mouse_click("left")
-        # Take a screenshot for debugging purposes
-        screenshot = ImageGrab.grab(bbox=region)
-        screenshotGray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_BGR2GRAY)
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-        cv2.imwrite(f"debugScreenshotCloseSeedShop{timestamp}.png", screenshotGray)
