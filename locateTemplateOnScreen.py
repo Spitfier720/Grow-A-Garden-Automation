@@ -41,7 +41,7 @@ def locateTemplateOnScreen(region, targetImage, imagePath):
         return (centerX + region[0], centerY + region[1])  # Adjust for the region offset
     else:
         # Take a debug screenshot to reference later if the image was not found, not including shop items
-        if(imagePath in filepaths.showGearShopImagePaths or imagePath == filepaths.XButtonImagePath):
+        if(imagePath in filepaths.showGearShopImagePaths or imagePath == filepaths.XButtonImagePath or imagePath == filepaths.shopOpenPath):
             print("Failed to find " + imagePath + " in the screenshot. Saving debug screenshot.")
             timestamp = datetime.now().strftime("%B%d_%H%M")
             cv2.imwrite(f"debugScreenshotNoMatch-{imagePath.split("/")[-1]}-{timestamp}.png", screenshotGray)

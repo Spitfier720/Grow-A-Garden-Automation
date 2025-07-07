@@ -51,7 +51,11 @@ def moveToGearShop():
             autoit.mouse_click("left")
             autoit.mouse_move(constants.middleX, constants.middleY)  # Move mouse to the center of the screen to focus on the shop window
             sleep(2)  # Wait for the gear shop to open
-            return True
+
+            shopRegion = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
+            shopOpenImage = cv2.imread(filepaths.shopOpenPath, cv2.IMREAD_GRAYSCALE)
+            if(locateTemplateOnScreen(shopRegion, shopOpenImage, filepaths.shopOpenPath) is not None):
+                return True
     
     print("Failed to open the gear shop. The options were not found.")
     return False  # If the gear shop options were not found, return False

@@ -53,16 +53,8 @@ seedShopItemTemplatePaths = [
 # The image path for the X button to close the shop
 XButtonImagePath = "Screenshots/X.png"
 
-# The image paths to check if the seed shop is opened
-seedShopOpenedImagePaths = [
-    "Screenshots/RarityPrismatic.png",
-    "Screenshots/RarityDivine.png",
-    "Screenshots/RarityMythical.png",
-    "Screenshots/RarityLegendary.png",
-    "Screenshots/RarityRare.png",
-    "Screenshots/RarityUncommon.png",
-    "Screenshots/RarityCommon.png"
-]
+# The image that determines if the shop is open
+shopOpenPath = "Screenshots/Stock.png"
 
 # The image paths for the option to open the gear shop
 showGearShopImagePaths = [

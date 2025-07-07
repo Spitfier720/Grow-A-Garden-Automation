@@ -4,6 +4,7 @@ from datetime import datetime
 
 import Constants.constantsPositions as constants
 import Constants.constantsFilepaths as filepaths
+import Constants.constantsPositions as positions
 from buyGearShop import buyGearShop
 from buySeedShop import buySeedShop
 
@@ -18,6 +19,16 @@ def focusGameWindow():
     
     autoit.mouse_move(constants.middleX, constants.middleY)
     autoit.mouse_click("left")  # Click to focus the game window
+
+def reloadLibraries():
+    '''
+    Reloads the libraries to ensure that the latest changes are applied.
+    This is useful when you make changes to the constants file or other files while the script is running.
+    '''
+    
+    importlib.reload(constants)
+    importlib.reload(filepaths)
+    importlib.reload(positions)
 
 def returnToGarden():
     '''

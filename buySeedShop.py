@@ -33,18 +33,16 @@ def moveToSeedShop():
     sleep(0.3)  # Wait for the teleport animation to finish
     autoit.send("e") # Player interacts with the gear shop to open it
     autoit.mouse_move(constants.middleX, constants.middleY)  # Move mouse to the center of the screen to focus on the shop window
-    sleep(1.5) # Wait for seed shop vendor to open seed shop
+    sleep(2) # Wait for seed shop vendor to open seed shop
 
     # Check if any rarity image is present in the seed shop window, meaning that the seed shop is opened
-    for seedShopOpenedImage in filepaths.seedShopOpenedImagePaths:
-        region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
-        seedImage = cv2.imread(seedShopOpenedImage, cv2.IMREAD_GRAYSCALE)
+    region = (constants.shopWindowPosX1, constants.shopWindowY1, constants.shopWindowPosX2, constants.shopWindowY2)
+    shopOpenImage = cv2.imread(filepaths.shopOpenPath, cv2.IMREAD_GRAYSCALE)
 
-        if locateTemplateOnScreen(region, seedImage, seedShopOpenedImage) is not None:
-            print("Found " + seedShopOpenedImage + " in the seed shop window. Seed shop is opened.")
-            return True
+    if locateTemplateOnScreen(region, shopOpenImage, filepaths.shopOpenPath) is not None:
+        return True
     
-    print("Failed to open the seed shop. No rarity was found.")
+    print("Failed to open the seed shop. The seed shop was not found.")
     return False
 
 def closeSeedShop():

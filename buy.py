@@ -6,6 +6,8 @@ import Constants.constantsPositions as constants
 import Constants.constantsFilepaths as filepaths
 from locateTemplateOnScreen import locateTemplateOnScreen
 
+import sendMessage
+
 
 def buy(thingsToBuy):
     '''
@@ -34,12 +36,14 @@ def buy(thingsToBuy):
 
                 autoit.mouse_move(coords[0], coords[1])
                 autoit.mouse_click("left")
-                sleep(0.3) # Wait for the animation to finish
+                sleep(0.4) # Wait for the animation to finish
 
                 moneySymbolImage = cv2.imread(filepaths.moneySymbolImagePath, cv2.IMREAD_GRAYSCALE)
                 moneySymbolCoords = locateTemplateOnScreen(region, moneySymbolImage, filepaths.moneySymbolImagePath)
-
-                if moneySymbolCoords is not None: # Found the money symbol indicating that we can buy the item
+                
+                # Found the money symbol indicating that we can buy the item
+                if moneySymbolCoords is not None:
+                    sendMessage.notifyInStock(imagePath)  # Notify that the item is in stock
                     autoit.mouse_move(moneySymbolCoords[0], moneySymbolCoords[1])
                     # TODO: Modify this so it's not hardcoded to click 25 times
                     # Some of those clicks won't register because we click so fast
