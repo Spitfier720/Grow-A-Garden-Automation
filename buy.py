@@ -40,9 +40,11 @@ def buy(thingsToBuy):
 
                 moneySymbolImage = cv2.imread(filepaths.moneySymbolImagePath, cv2.IMREAD_GRAYSCALE)
                 moneySymbolCoords = locateTemplateOnScreen(region, moneySymbolImage, filepaths.moneySymbolImagePath)
+                newCoords = locateTemplateOnScreen(region, targetImage, imagePath)  # Re-locate the item after clicking it to compare with the money symbol
                 
                 # Found the money symbol indicating that we can buy the item
-                if moneySymbolCoords is not None:
+                # IF the money symbol is not below the item, it belongs to the item above it and we shouldn't click it
+                if moneySymbolCoords is not None and moneySymbolCoords[1] > newCoords[1]:
                     sendMessage.notifyInStock(imagePath)  # Notify that the item is in stock
                     autoit.mouse_move(moneySymbolCoords[0], moneySymbolCoords[1])
                     # TODO: Modify this so it's not hardcoded to click 25 times
